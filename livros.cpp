@@ -1,43 +1,36 @@
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 
-int verificaPalavra(){
-	char a[40];
-	scanf("%s", a);
-	int length = strlen(a);
-	int vocals = 0;
-	
-	for(int i = 0; i <= length; i++)
-	{
-		if(a[i] == 'a' || a[i] == 'A' || a[i] == 'e' || a[i] == 'E' || a[i] == 'i' || a[i] == 'I' || a[i] == 'o' || a[i] == 'O' || a[i] == 'u' || a[i] == 'U')
-		{
-			++vocals;
-		}
-	
-	}
-	
-	if(vocals == 0)
-	{
-		printf("%s\n", a);
-		
-		return 1;
-	}
-	return 0;
-		
-	
-	
+int main()
+{
+    int a;
+    scanf("%d", &a);
+    int i, j;
+    char str[a][150], temp[50];
 
-}
-int main(){
-    int ungratefulword = 0;
-    
-    while(ungratefulword < 3){
-		ungratefulword += verificaPalavra();
-	
+
+    for(i=0; i< a; ++i)
+    {
+		scanf("%s",str[i]);
 	}
-	
-    
-   
-		
-		    
+
+
+    for(i=0; i< (a - 1); ++i)
+        for(j=i+1; j< a; ++j)
+        {
+            if(strcmp(str[i], str[j])>0)
+            {
+                strcpy(temp, str[i]);
+                strcpy(str[i], str[j]);
+                strcpy(str[j], temp);
+            }
+        }
+
+    for(i=0; i< a; ++i)
+    {
+        puts(str[i]);
+    }
+
+    return 0;
 }
